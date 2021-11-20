@@ -54,6 +54,7 @@ class Uploader:
 
         # Go to the networks tab
         self.__driver.get(f"{self.__METAMASK_URL}#settings/networks")
+        print("Called")
         sleep(2)
 
         # Choose one of the preconfigured networks if specified
