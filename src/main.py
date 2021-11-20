@@ -1,7 +1,11 @@
 from selenium import webdriver
+import os
 
 class Uploader:
     def __init__(self):
+        bin_base = os.path.join(os.getcwd(), "bin")
+        chromedriver_path = os.path.join(bin_base, "chromedriver");
+        ext_path = os.path.join(bin_base, "metamask.crx");
         self.__driver = webdriver.Chrome()
 
     def connect(self):
