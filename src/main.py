@@ -1,8 +1,8 @@
-import selenium
+from selenium import webdriver
 
 class Uploader:
     def __init__(self):
-        pass
+        self.__driver = webdriver.Chrome()
 
 def main():
     pass
