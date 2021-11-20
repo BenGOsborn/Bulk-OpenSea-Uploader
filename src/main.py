@@ -17,7 +17,7 @@ class Uploader:
         opt.add_extension(extension=ext_path)
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
-        # Close the metamask popup
+        # Close the metamask popup and navigate back to the correct window
         sleep(2)
         self.__driver.switch_to.window(self.__driver.window_handles[0])
         self.__driver.close()
@@ -30,7 +30,7 @@ class Uploader:
         '''
 
         # Navigate to metamask screen
-        self.__driver.get(self.__METAMASK_URL)
+        self.__driver.get(f"{self.__METAMASK_URL}#initialize/welcome")
         sleep(1)
 
         # Skip through wallet setup screen
@@ -46,6 +46,13 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
         sleep(2)
+
+    def add_network(self):
+        '''
+        Adds the specified network to Metamask and selects it
+        '''
+
+        pass
 
     def __upload(self):
         '''
@@ -65,6 +72,7 @@ def main():
     password = os.getenv("PASSWORD")
 
     uploader = Uploader()
+    sleep(50)
     uploader.connect_metamask(seed_phrase, password)
     uploader.close()
 
