@@ -159,6 +159,7 @@ def main():
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
     uploader.sign_transaction()
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
+    sleep(5000)
 
     # Close
     uploader.close()
