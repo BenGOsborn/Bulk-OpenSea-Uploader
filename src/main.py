@@ -105,6 +105,7 @@ class Uploader:
 
         # Add an item to the collection
         self.__driver.get(f"{self.__collection_url}/assets/create")
+        sleep(500) # **** Remove this
         sleep(1)
 
         # Input the data
