@@ -29,7 +29,8 @@ class Uploader:
         self.__driver.close()
 
 def main():
-    pass
+    uploader = Uploader()
+    uploader.close()
 
 if __name__ == "__main__":
     main()
