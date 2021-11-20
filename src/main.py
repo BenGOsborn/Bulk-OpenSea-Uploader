@@ -1,4 +1,5 @@
 from selenium import webdriver
+from bs4 import BeautifulSoup
 from time import sleep
 import os
 
@@ -15,7 +16,8 @@ class Uploader:
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
         # Connect to metamask
-        sleep(4)
+        sleep(2)
+        self.__driver.switch_to_window(self.__driver.window_handles[1])
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
 
     def __upload(self):
