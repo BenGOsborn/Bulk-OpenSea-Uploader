@@ -74,13 +74,21 @@ class Uploader:
 
     def open_metamask(self):
         '''
-        Open metamask in new window
+        Open Metamask in new window
         '''
 
         # Open the extension in a new tab and switch back
         self.__driver.execute_script("window.open('');")
         self.__driver.switch_to.window(self.__driver.window_handles[1])
         self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
+
+    def __metamask_execute(self, fn):
+        '''
+        Execute an operation within Metamask and then switch back
+        '''
+        self.__driver.switch_to.window(self.__driver.window_handles[1])
+        fn()
         self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def __upload(self):
