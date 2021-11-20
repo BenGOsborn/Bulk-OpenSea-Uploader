@@ -2,7 +2,6 @@ from selenium import webdriver
 from time import sleep
 import os
 import dotenv
-import traceback
 
 class Uploader:
     def __init__(self):
@@ -156,18 +155,15 @@ def main():
     uploader.open_metamask()
 
     # Upload to OpenSea
-    try:
-        uploader.connect_opensea(True)
-        uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-        uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
-        uploader.sign_transaction()
-        uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
-        sleep(5000)
+    uploader.connect_opensea(True)
+    uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
+    uploader.sign_transaction()
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
+    sleep(5000)
 
-        # Close
-        uploader.close()
-    except:
-        traceback.print_exc()
+    # Close
+    uploader.close()
 
 if __name__ == "__main__":
     main()
