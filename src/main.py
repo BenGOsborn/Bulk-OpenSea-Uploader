@@ -105,7 +105,7 @@ class Uploader:
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[4]/div[2]/button[2]').click()
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[2]/div[2]/footer/button[2]').click()
         self.__metamask_execute(connect)
-        sleep(5)
+        sleep(2)
 
     def set_collection_url(self, collection_url: str):
         '''
@@ -120,7 +120,6 @@ class Uploader:
 
         # Add an item to the collection
         self.__driver.get(f"{self.__collection_url}/assets/create")
-        sleep(500) # **** Remove this
         sleep(1)
 
         # Input the data
@@ -153,8 +152,7 @@ def main():
     # Upload to OpenSea
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-    sleep(500)
-    # uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
 
     # Close
     uploader.close()
