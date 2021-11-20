@@ -5,7 +5,7 @@ import os
 import dotenv
 
 class Uploader:
-    def __init__(self):
+    def __init__(self, test: bool = False):
         # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
         chromedriver_path = os.path.join(bin_base, "chromedriver")
@@ -13,6 +13,7 @@ class Uploader:
         self.__METAMASK_URL = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html"
         self.__METAMASK_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
         self.__collection_url = ""
+        self.__test = test
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
