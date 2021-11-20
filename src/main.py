@@ -5,7 +5,7 @@ import os
 import dotenv
 
 class Uploader:
-    def __init__(self, seed_phrase: str, passphrase: str):
+    def __init__(self, seed_phrase: str, password: str):
         # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
         chromedriver_path = os.path.join(bin_base, "chromedriver")
@@ -25,10 +25,10 @@ class Uploader:
 
         sleep(0.5)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[4]/div[1]/div/input').send_keys(seed_phrase)
-        self.__driver.find_element_by_xpath('//*[@id="password"]').send_keys(passphrase)
-        self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(passphrase)
+        self.__driver.find_element_by_xpath('//*[@id="password"]').send_keys(password)
+        self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
-        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
+        # self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
 
     def __upload(self):
         '''
@@ -42,8 +42,10 @@ class Uploader:
 def main():
     # Initialize env variables
     dotenv.load_dotenv()
+    seed_phrase = os.getenv("SEED_PHRASE")
+    password = os.getenv("PASSWORD")
 
-    uploader = Uploader("Hello world", "helloworld")
+    uploader = Uploader(seed_phrase, password)
     sleep(50)
     uploader.close()
 
