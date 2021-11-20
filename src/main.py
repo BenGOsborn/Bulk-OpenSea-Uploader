@@ -11,6 +11,7 @@ class Uploader:
         chromedriver_path = os.path.join(bin_base, "chromedriver")
         ext_path = os.path.join(bin_base, "metamask.crx")
         self.__METAMASK_URL = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html"
+        self.__METAMASK_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
@@ -70,6 +71,17 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div').click()
         self.__driver.find_element_by_xpath(f'//*[@id="app-content"]/div/div[2]/div/li[{preconfigured_network}]').click()
         sleep(2)
+
+    def open_metamask(self):
+        '''
+        Open metamask in new window
+        '''
+
+        # Open the extension in a new tab and switch back
+        self.__driver.execute_script("window.open('');")
+        self.__driver.switch_to.window(self.__driver.window_handles[1])
+        self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def __upload(self):
         '''
