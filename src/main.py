@@ -50,7 +50,9 @@ class Uploader:
         pass
 
     def close(self):
-        self.__driver.close()
+        for window_handle in self.__driver.window_handles:
+            self.__driver.switch_to.window(window_handle)
+            self.__driver.close()
 
 def main():
     # Initialize env variables
@@ -59,7 +61,7 @@ def main():
     password = os.getenv("PASSWORD")
 
     uploader = Uploader()
-    sleep(50)
+
     uploader.close()
 
 if __name__ == "__main__":
