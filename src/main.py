@@ -67,6 +67,7 @@ class Uploader:
         # Select the network
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div').click()
         self.__driver.find_element_by_xpath(f'//*[@id="app-content"]/div/div[2]/div/li[{preconfigured_network}]').click()
+        sleep(2)
 
     def __upload(self):
         '''
