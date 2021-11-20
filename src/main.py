@@ -98,7 +98,7 @@ class Uploader:
         '''
         self.__collection_url = collection_url
 
-    def __upload(self, img_path: str, name: str):
+    def upload(self, img_path: str, name: str):
         '''
         Upload a single NFT to OpenSea.
         '''
@@ -135,6 +135,7 @@ def main():
 
     # Upload to OpenSea
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
 
     # Close
     uploader.close()
