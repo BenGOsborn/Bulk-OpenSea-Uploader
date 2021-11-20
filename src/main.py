@@ -107,11 +107,12 @@ class Uploader:
         self.__driver.get(f"{self.__collection_url}/assets/create")
         sleep(1)
 
-        # **** Add options to upload other metadata to the NFT
-
         # Input the data
         self.__driver.find_element_by_xpath('//*[@id="media"]').send_keys(img_path) # **** Might need some pause for this to upload the image - do it before clicking
         self.__driver.find_element_by_xpath('//*[@id="name"]').send_keys(name)
+
+        # ======== Add your other NFT metadata below
+
         self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/section/div[2]/form/div[9]/div[1]/span/button').click()
 
     def close(self):
