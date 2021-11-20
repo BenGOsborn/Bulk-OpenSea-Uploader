@@ -108,10 +108,14 @@ def main():
     seed_phrase = os.getenv("SEED_PHRASE")
     password = os.getenv("PASSWORD")
 
+    # Initialize
     uploader = Uploader()
     uploader.connect_metamask(seed_phrase, password)
     # uploader.add_network("", 0, 1)
     uploader.add_network("https://rpc-mumbai.maticvigil.com/", 80001)
+    uploader.open_metamask()
+
+    # Close
     uploader.close()
 
 if __name__ == "__main__":
