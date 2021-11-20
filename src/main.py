@@ -5,19 +5,28 @@ import os
 import dotenv
 
 class Uploader:
-    def __init__(self, seed_phrase: str, password: str):
+    def __init__(self):
         # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
         chromedriver_path = os.path.join(bin_base, "chromedriver")
         ext_path = os.path.join(bin_base, "metamask.crx")
+        self.__METAMASK_URL = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html"
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
         opt.add_extension(extension=ext_path)
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
-        # Connect to metamask
+        # Close the metamask popup
         sleep(2)
+        self.__driver.close()
+
+
+    def connect_metamask(self, seed_phrase: str, password: str):
+        '''
+        Connect to Metamask
+        '''
+        self.__driver.get(self.__METAMASK_URL)
         self.__driver.switch_to.window(self.__driver.window_handles[0])
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button').click()
@@ -29,7 +38,7 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
-        
+
         sleep(2)
 
     def __upload(self):
