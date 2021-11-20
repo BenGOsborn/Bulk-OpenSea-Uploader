@@ -19,6 +19,7 @@ class Uploader:
 
         # Close the metamask popup
         sleep(2)
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
         self.__driver.close()
 
 
@@ -27,7 +28,6 @@ class Uploader:
         Connect to Metamask
         '''
         self.__driver.get(self.__METAMASK_URL)
-        self.__driver.switch_to.window(self.__driver.window_handles[0])
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/div[5]/div[1]/footer/button[1]').click()
@@ -56,7 +56,7 @@ def main():
     seed_phrase = os.getenv("SEED_PHRASE")
     password = os.getenv("PASSWORD")
 
-    uploader = Uploader(seed_phrase, password)
+    uploader = Uploader()
     sleep(50)
     uploader.close()
 
