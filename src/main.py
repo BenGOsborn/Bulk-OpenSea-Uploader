@@ -73,24 +73,24 @@ class Uploader:
         self.__driver.find_element_by_xpath(f'//*[@id="app-content"]/div/div[2]/div/li[{preconfigured_network}]').click()
         sleep(2)
 
-    # def open_metamask(self):
-    #     '''
-    #     Open Metamask in new window
-    #     '''
+    def open_metamask(self):
+        '''
+        Open Metamask in new window
+        '''
 
-    #     # Open the extension in a new tab and switch back
-    #     self.__driver.execute_script("window.open('');")
-    #     self.__driver.switch_to.window(self.__driver.window_handles[1])
-    #     self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
-    #     self.__driver.switch_to.window(self.__driver.window_handles[0])
+        # Open the extension in a new tab and switch back
+        self.__driver.execute_script("window.open('');")
+        self.__driver.switch_to.window(self.__driver.window_handles[1])
+        self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
 
-    # def __metamask_execute(self, fn):
-    #     '''
-    #     Execute an operation within Metamask and then switch back
-    #     '''
-    #     self.__driver.switch_to.window(self.__driver.window_handles[1])
-    #     fn()
-    #     self.__driver.switch_to.window(self.__driver.window_handles[0])
+    def __metamask_execute(self, fn):
+        '''
+        Execute an operation within Metamask and then switch back
+        '''
+        self.__driver.switch_to.window(self.__driver.window_handles[1])
+        fn()
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def set_collection_url(self, collection_url: str):
         '''
@@ -133,7 +133,7 @@ def main():
     uploader.connect_metamask(seed_phrase, password)
     # uploader.add_network("", 0, 1)
     uploader.add_network("https://rpc-mumbai.maticvigil.com/", 80001)
-    # uploader.open_metamask() # **** Is this even needed for minting NFT's ?
+    uploader.open_metamask()
 
     # Upload to OpenSea
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
