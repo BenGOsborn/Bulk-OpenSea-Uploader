@@ -53,6 +53,7 @@ class Uploader:
         '''
 
         # Go to the networks tab
+        self.__driver.get("")
         self.__driver.get(f"{self.__METAMASK_URL}#settings/networks")
         sleep(1)
 
