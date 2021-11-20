@@ -87,8 +87,8 @@ def main():
     password = os.getenv("PASSWORD")
 
     uploader = Uploader()
-    sleep(50)
     uploader.connect_metamask(seed_phrase, password)
+    uploader.add_network("", 0, 1)
     uploader.close()
 
 if __name__ == "__main__":
