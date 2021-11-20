@@ -27,18 +27,20 @@ class Uploader:
         '''
         Connect to Metamask
         '''
+
+        # Skip through wallet setup screen
         self.__driver.get(self.__METAMASK_URL)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/div[5]/div[1]/footer/button[1]').click()
-
         sleep(0.5)
+
+        # Enter wallet seed phrase and password
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[4]/div[1]/div/input').send_keys(seed_phrase)
         self.__driver.find_element_by_xpath('//*[@id="password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
-
         sleep(2)
 
     def __upload(self):
