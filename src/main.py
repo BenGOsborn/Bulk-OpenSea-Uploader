@@ -6,19 +6,17 @@ class Uploader:
     def __init__(self):
         # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
-        chromedriver_path = os.path.join(bin_base, "chromedriver");
-        ext_path = os.path.join(bin_base, "metamask.crx");
+        chromedriver_path = os.path.join(bin_base, "chromedriver")
+        ext_path = os.path.join(bin_base, "metamask.crx")
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
         opt.add_extension(extension=ext_path)
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
-    def connect(self):
-        '''
-        Connect to wallet. https://dev.to/ltmenezes/automated-dapps-scrapping-with-selenium-and-metamask-2ae9
-        '''
-        pass
+        # Connect to metamask
+        sleep(4)
+        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
 
     def __upload(self):
         '''
@@ -31,7 +29,7 @@ class Uploader:
 
 def main():
     uploader = Uploader()
-    sleep(10)
+    sleep(50)
     uploader.close()
 
 if __name__ == "__main__":
