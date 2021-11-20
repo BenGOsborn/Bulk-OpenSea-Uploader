@@ -154,15 +154,18 @@ def main():
     uploader.open_metamask()
 
     # Upload to OpenSea
-    uploader.connect_opensea(True)
-    uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
-    uploader.sign_transaction()
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
-    sleep(5000)
+    try:
+        uploader.connect_opensea(True)
+        uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+        uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
+        uploader.sign_transaction()
+        uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
+        sleep(5000)
 
-    # Close
-    uploader.close()
+        # Close
+        uploader.close()
+    except:
+        pass
 
 if __name__ == "__main__":
     main()
