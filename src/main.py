@@ -89,7 +89,8 @@ def main():
 
     uploader = Uploader()
     uploader.connect_metamask(seed_phrase, password)
-    uploader.add_network("", 0, 1)
+    # uploader.add_network("", 0, 1)
+    uploader.add_network("https://rpc-mumbai.maticvigil.com/", 80001)
     uploader.close()
 
 if __name__ == "__main__":
