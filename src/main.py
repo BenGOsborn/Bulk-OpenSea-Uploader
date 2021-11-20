@@ -45,7 +45,7 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
-        sleep(2)
+        sleep(3)
 
     def add_network(self, rpc_url: str, chain_id: int, preconfigured_network: int = None):
         '''
@@ -54,7 +54,7 @@ class Uploader:
 
         # Go to the networks tab
         self.__driver.get(f"{self.__METAMASK_URL}#settings/networks")
-        sleep(1)
+        sleep(2)
 
         # Choose one of the preconfigured networks if specified
         if preconfigured_network == None:
