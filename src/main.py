@@ -164,8 +164,8 @@ def main():
 
         # Close
         uploader.close()
-    except Exception:
-        pass
+    except:
+        traceback.print_exc()
 
 if __name__ == "__main__":
     main()
