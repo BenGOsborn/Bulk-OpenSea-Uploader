@@ -104,12 +104,14 @@ class Uploader:
         def connect():
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[4]/div[2]/button[2]').click()
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[2]/div[2]/footer/button[2]').click()
+            sleep(2)
         self.__metamask_execute(connect)
-        sleep(2)
 
     def sign_transaction(self):
-        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[3]/button[2]').click()
-        sleep(1)
+        def sign():
+            self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[3]/button[2]').click()
+            sleep(1)
+        self.__metamask_execute(sign)
 
     def set_collection_url(self, collection_url: str):
         '''
