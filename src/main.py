@@ -153,6 +153,7 @@ def main():
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
+    sleep(2000)
 
     # Close
     uploader.close()
