@@ -28,8 +28,11 @@ class Uploader:
         Connect to Metamask
         '''
 
-        # Skip through wallet setup screen
+        # Navigate to metamask screen
         self.__driver.get(self.__METAMASK_URL)
+        sleep(1)
+
+        # Skip through wallet setup screen
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button').click()
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/div/div[5]/div[1]/footer/button[1]').click()
