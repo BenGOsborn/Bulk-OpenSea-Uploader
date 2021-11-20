@@ -3,10 +3,15 @@ import os
 
 class Uploader:
     def __init__(self):
+        # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
         chromedriver_path = os.path.join(bin_base, "chromedriver");
         ext_path = os.path.join(bin_base, "metamask.crx");
-        self.__driver = webdriver.Chrome()
+
+        # Initialize the driver
+        opt = webdriver.ChromeOptions()
+        opt.add_extension(extension=ext_path)
+        self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
     def connect(self):
         '''
