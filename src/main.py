@@ -1,8 +1,8 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
 from time import sleep
 import os
 import dotenv
+import traceback
 
 class Uploader:
     def __init__(self):
@@ -164,7 +164,7 @@ def main():
 
         # Close
         uploader.close()
-    except:
+    except Exception:
         pass
 
 if __name__ == "__main__":
