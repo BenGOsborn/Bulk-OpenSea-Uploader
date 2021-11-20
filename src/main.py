@@ -114,6 +114,7 @@ class Uploader:
         # ======== Add your other NFT metadata below
 
         self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/section/div[2]/form/div[9]/div[1]/span/button').click()
+        sleep(2)
 
     def close(self):
         for window_handle in self.__driver.window_handles:
