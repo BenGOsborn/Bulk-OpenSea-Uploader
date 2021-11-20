@@ -105,6 +105,7 @@ class Uploader:
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[4]/div[2]/button[2]').click()
             self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[2]/div[2]/footer/button[2]').click()
         self.__metamask_execute(connect)
+        sleep(5)
 
     def set_collection_url(self, collection_url: str):
         '''
