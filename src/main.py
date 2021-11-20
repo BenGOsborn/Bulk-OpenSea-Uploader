@@ -1,4 +1,5 @@
 from selenium import webdriver
+from time import sleep
 import os
 
 class Uploader:
@@ -30,6 +31,7 @@ class Uploader:
 
 def main():
     uploader = Uploader()
+    sleep(10)
     uploader.close()
 
 if __name__ == "__main__":
