@@ -12,6 +12,7 @@ class Uploader:
         ext_path = os.path.join(bin_base, "metamask.crx")
         self.__METAMASK_URL = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html"
         self.__METAMASK_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
+        self.__collection_url = ""
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
@@ -90,6 +91,12 @@ class Uploader:
         self.__driver.switch_to.window(self.__driver.window_handles[1])
         fn()
         self.__driver.switch_to.window(self.__driver.window_handles[0])
+
+    def set_collection_url(self, collection_url: str):
+        '''
+        Sets the OpenSea collection URL to upload to
+        '''
+        self.__collection_url = collection_url
 
     def __upload(self):
         '''
