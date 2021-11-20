@@ -73,24 +73,24 @@ class Uploader:
         self.__driver.find_element_by_xpath(f'//*[@id="app-content"]/div/div[2]/div/li[{preconfigured_network}]').click()
         sleep(2)
 
-    def open_metamask(self):
-        '''
-        Open Metamask in new window
-        '''
+    # def open_metamask(self):
+    #     '''
+    #     Open Metamask in new window
+    #     '''
 
-        # Open the extension in a new tab and switch back
-        self.__driver.execute_script("window.open('');")
-        self.__driver.switch_to.window(self.__driver.window_handles[1])
-        self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
-        self.__driver.switch_to.window(self.__driver.window_handles[0])
+    #     # Open the extension in a new tab and switch back
+    #     self.__driver.execute_script("window.open('');")
+    #     self.__driver.switch_to.window(self.__driver.window_handles[1])
+    #     self.__driver.get(f"chrome-extension://{self.__METAMASK_ID}/popup.html")
+    #     self.__driver.switch_to.window(self.__driver.window_handles[0])
 
-    def __metamask_execute(self, fn):
-        '''
-        Execute an operation within Metamask and then switch back
-        '''
-        self.__driver.switch_to.window(self.__driver.window_handles[1])
-        fn()
-        self.__driver.switch_to.window(self.__driver.window_handles[0])
+    # def __metamask_execute(self, fn):
+    #     '''
+    #     Execute an operation within Metamask and then switch back
+    #     '''
+    #     self.__driver.switch_to.window(self.__driver.window_handles[1])
+    #     fn()
+    #     self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def set_collection_url(self, collection_url: str):
         '''
@@ -98,11 +98,19 @@ class Uploader:
         '''
         self.__collection_url = collection_url
 
-    def __upload(self):
+    def __upload(self, img_path: str, name: str):
         '''
         Upload a single NFT to OpenSea.
         '''
-        pass
+
+        # Add an item to the collection
+        self.__driver.get(f"{self.__collection_url}/assets/create")
+        sleep(1)
+
+        # Input the data
+        self.__driver.find_element_by_xpath('//*[@id="media"]').send_keys(img_path) # **** Might need some pause for this to upload the image - do it before clicking
+        self.__driver.find_element_by_xpath('//*[@id="name"]').send_keys(name)
+        self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/section/div[2]/form/div[9]/div[1]/span/button').click()
 
     def close(self):
         for window_handle in self.__driver.window_handles:
@@ -120,7 +128,10 @@ def main():
     uploader.connect_metamask(seed_phrase, password)
     # uploader.add_network("", 0, 1)
     uploader.add_network("https://rpc-mumbai.maticvigil.com/", 80001)
-    uploader.open_metamask()
+    # uploader.open_metamask() # **** Is this even needed for minting NFT's ?
+
+    # Upload to OpenSea
+    uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
 
     # Close
     uploader.close()
