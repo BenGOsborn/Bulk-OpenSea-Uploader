@@ -17,6 +17,7 @@ class Uploader:
         # Initialize the driver
         opt = webdriver.ChromeOptions()
         opt.add_extension(extension=ext_path)
+        opt.add_argument('log-level=2')
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
         # Close the metamask popup and navigate back to the correct window
@@ -89,6 +90,8 @@ class Uploader:
         Execute an operation within Metamask and then switch back
         '''
         self.__driver.switch_to.window(self.__driver.window_handles[1])
+        self.__driver.refresh()
+        sleep(2)
         fn()
         self.__driver.switch_to.window(self.__driver.window_handles[0])
 
