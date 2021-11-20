@@ -28,7 +28,9 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="confirm-password"]').send_keys(password)
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/div[7]/div').click()
-        # self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
+        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
+        sleep(1)
+        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/button').click()
 
     def __upload(self):
         '''
