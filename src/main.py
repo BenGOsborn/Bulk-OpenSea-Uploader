@@ -21,6 +21,7 @@ class Uploader:
         sleep(2)
         self.__driver.switch_to.window(self.__driver.window_handles[0])
         self.__driver.close()
+        self.__driver.switch_to.window(self.__driver.window_handles[0])
 
 
     def connect_metamask(self, seed_phrase: str, password: str):
