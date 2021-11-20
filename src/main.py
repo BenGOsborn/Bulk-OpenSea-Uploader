@@ -47,12 +47,26 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div/form/button').click()
         sleep(2)
 
-    def add_network(self):
+    def add_network(self, rpc_url: str, chain_id: int, preconfigured_network: int = None):
         '''
         Adds the specified network to Metamask and selects it
         '''
 
-        pass
+        # Go to the networks tab
+        self.__driver.get(f"{self.__METAMASK_URL}#settings/networks")
+        sleep(1)
+
+        # Choose one of the preconfigured networks if specified
+        if preconfigured_network == None:
+            self.__driver.find_element_by_xpath('//*[@id="network-name"]').send_keys("Network")
+            self.__driver.find_element_by_xpath('//*[@id="rpc-url"]').send_keys(rpc_url)
+            self.__driver.find_element_by_xpath('//*[@id="chainId"]').send_keys(chain_id)
+            self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div[2]/div[7]/button[2]').click()
+            preconfigured_network = 7
+
+        # Select the network
+        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div').click()
+        self.__driver.find_element_by_xpath(f'//*[@id="app-content"]/div/div[2]/div/li[{preconfigured_network}]').click()
 
     def __upload(self):
         '''
