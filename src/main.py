@@ -2,6 +2,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from time import sleep
 import os
+import dotenv
 
 class Uploader:
     def __init__(self, seed_phrase: str, passphrase: str):
@@ -39,6 +40,9 @@ class Uploader:
         self.__driver.close()
 
 def main():
+    # Initialize env variables
+    dotenv.load_dotenv()
+
     uploader = Uploader("Hello world", "helloworld")
     sleep(50)
     uploader.close()
