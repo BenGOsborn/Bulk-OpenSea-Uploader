@@ -59,6 +59,7 @@ class Uploader:
 
         # Choose one of the preconfigured networks if specified
         if preconfigured_network == None:
+            self.__driver.find_element_by_xpath('//*[@id="network-name"]').click()
             self.__driver.find_element_by_xpath('//*[@id="network-name"]').send_keys("Network")
             self.__driver.find_element_by_xpath('//*[@id="rpc-url"]').send_keys(rpc_url)
             self.__driver.find_element_by_xpath('//*[@id="chainId"]').send_keys(chain_id)
