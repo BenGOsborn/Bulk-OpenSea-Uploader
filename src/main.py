@@ -93,6 +93,7 @@ class Uploader:
         self.__driver.refresh()
         sleep(2)
         fn()
+        sleep(2)
         self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def connect_opensea(self, test: bool):
@@ -100,7 +101,10 @@ class Uploader:
         sleep(2)
         self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/div/div[2]/ul/li[1]/button').click()
         sleep(1)
-        self.__metamask_execute(lambda: )
+        def connect():
+            self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[4]/div[2]/button[2]').click()
+            self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[2]/div[2]/div[2]/footer/button[2]').click()
+        self.__metamask_execute(connect)
 
     def set_collection_url(self, collection_url: str):
         '''
@@ -148,6 +152,7 @@ def main():
     # Upload to OpenSea
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+    sleep(500)
     # uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
 
     # Close
