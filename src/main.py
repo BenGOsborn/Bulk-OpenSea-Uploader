@@ -107,6 +107,10 @@ class Uploader:
         self.__metamask_execute(connect)
         sleep(2)
 
+    def sign_transaction(self):
+        self.__driver.find_element_by_xpath('//*[@id="app-content"]/div/div[2]/div/div[3]/button[2]').click()
+        sleep(1)
+
     def set_collection_url(self, collection_url: str):
         '''
         Sets the OpenSea collection URL to upload to
@@ -152,8 +156,9 @@ def main():
     # Upload to OpenSea
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
-    sleep(2000)
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
+    uploader.sign_transaction()
+    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
 
     # Close
     uploader.close()
