@@ -5,7 +5,7 @@ import os
 import dotenv
 
 class Uploader:
-    def __init__(self, test: bool = False):
+    def __init__(self):
         # Get the base directories
         bin_base = os.path.join(os.getcwd(), "bin")
         chromedriver_path = os.path.join(bin_base, "chromedriver")
@@ -13,7 +13,6 @@ class Uploader:
         self.__METAMASK_URL = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html"
         self.__METAMASK_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
         self.__collection_url = ""
-        self.__test = test
 
         # Initialize the driver
         opt = webdriver.ChromeOptions()
@@ -96,6 +95,13 @@ class Uploader:
         fn()
         self.__driver.switch_to.window(self.__driver.window_handles[0])
 
+    def connect_opensea(self, test: bool):
+        self.__driver.get("https://testnets.opensea.io/login" if test else "https://opensea.io/login")
+        sleep(2)
+        self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/div/div[2]/ul/li[1]/button').click()
+        sleep(1)
+        self.__metamask_execute(lambda: )
+
     def set_collection_url(self, collection_url: str):
         '''
         Sets the OpenSea collection URL to upload to
@@ -140,8 +146,9 @@ def main():
     uploader.open_metamask()
 
     # Upload to OpenSea
+    uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
+    # uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test")
 
     # Close
     uploader.close()
