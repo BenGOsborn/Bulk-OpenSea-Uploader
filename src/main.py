@@ -25,7 +25,7 @@ def main():
     COLLECTION_URL = "https://testnets.opensea.io/collection/big-test-4"
     uploader.set_collection_url(COLLECTION_URL)
 
-    # Upload NFT's to OpenSea - MODIFY THE UPLOAD FUNCTION AND THE METADATA TO CONTAIN ANY ADDITIONAL METADATA
+    # Upload NFT data in 'metadata.json' to OpenSea - MODIFY THE UPLOAD FUNCTION AND THE METADATA TO CONTAIN ANY ADDITIONAL METADATA
     metadata = json.load(open(os.path.join(os.getcwd(), "data", "manifest.json")))
     first_upload = True
     for data in metadata:
