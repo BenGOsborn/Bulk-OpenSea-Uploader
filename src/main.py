@@ -21,7 +21,7 @@ def main():
     uploader.open_metamask()
 
     # Connect to OpenSea
-    uploader.connect_opensea(True)
+    uploader.connect_opensea(test=True)
     COLLECTION_URL = "https://testnets.opensea.io/collection/big-test-4"
     uploader.set_collection_url(COLLECTION_URL)
 
