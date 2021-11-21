@@ -1,6 +1,7 @@
 import os
 import dotenv
 from uploader import Uploader
+import json
 
 def main():
     # Initialize env variables
@@ -14,16 +15,24 @@ def main():
 
     # Connect to the specified network - ENTER THE APPROPRIATE NETWORK
     # uploader.add_network("", 0, 1) # Default network provided by Metamask
-    uploader.add_network("https://rpc-mumbai.maticvigil.com/", 80001) # Custom network to add to Metamask
+    NETWORK_RPC = "https://rpc-mumbai.maticvigil.com/"
+    CHAIN_ID = 80001
+    uploader.add_network(NETWORK_RPC, CHAIN_ID) # Custom network to add to Metamask
     uploader.open_metamask()
 
-    # Upload to OpenSea
+    # Connect to OpenSea
     uploader.connect_opensea(True)
-    uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+    COLLECTION_URL = "https://testnets.opensea.io/collection/big-test-4"
+    uploader.set_collection_url(COLLECTION_URL)
 
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
-    uploader.sign_transaction() # Only needed for the first upload
-    uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
+    # Upload NFT's to OpenSea - MODIFY THE UPLOAD FUNCTION AND THE METADATA TO CONTAIN ANY ADDITIONAL METADATA
+    metadata = json.load(open(os.path.join(os.getcwd(), "data", "manifest.json")))
+    first_upload = True
+    for data in metadata:
+        uploader.upload(os.path.join(os.getcwd(), "data", "images", data["image"]), data["name"])
+        if first_upload:
+            uploader.sign_transaction() # Only needed for the first upload
+            first_upload = False 
 
     # Close
     uploader.close()
