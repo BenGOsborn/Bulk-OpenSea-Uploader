@@ -16,7 +16,7 @@ class Uploader:
         # Initialize the driver
         opt = webdriver.ChromeOptions()
         opt.add_extension(extension=ext_path)
-        opt.add_argument('log-level=2')
+        opt.add_argument('--log-level=2')
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
         # Close the metamask popup and navigate back to the correct window
@@ -165,7 +165,7 @@ def main():
     # Upload to OpenSea
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
-    
+
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
     uploader.sign_transaction() # Only needed for the first upload
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
@@ -173,5 +173,6 @@ def main():
     # Close
     uploader.close()
 
+# Run main if this file is run directly
 if __name__ == "__main__":
     main()
