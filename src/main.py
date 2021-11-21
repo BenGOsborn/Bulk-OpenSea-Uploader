@@ -17,6 +17,7 @@ class Uploader:
         opt = webdriver.ChromeOptions()
         opt.add_extension(extension=ext_path)
         opt.add_argument('--log-level=2')
+        opt.add_argument('--headless')
         self.__driver = webdriver.Chrome(executable_path=chromedriver_path, chrome_options=opt)
 
         # Close the metamask popup and navigate back to the correct window
