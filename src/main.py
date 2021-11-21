@@ -1,6 +1,6 @@
 import os
 import dotenv
-
+from uploader import Uploader
 
 def main():
     # Initialize env variables
