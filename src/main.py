@@ -28,11 +28,14 @@ def main():
     # Upload NFT data in 'metadata.json' to OpenSea - MODIFY THE UPLOAD FUNCTION AND THE METADATA TO CONTAIN ANY ADDITIONAL METADATA
     metadata = json.load(open(os.path.join(os.getcwd(), "data", "manifest.json")))
     first_upload = True
-    for data in metadata:
-        uploader.upload(os.path.join(os.getcwd(), "data", "images", data["image"]), data["name"])
-        if first_upload:
-            uploader.sign_transaction() # Only needed for the first upload
-            first_upload = False 
+    for i, data in enumerate(metadata):
+        try:
+            uploader.upload(os.path.join(os.getcwd(), "data", "images", data["image"]), data["name"])
+            if first_upload:
+                uploader.sign_transaction()
+                first_upload = False 
+        except Exception as e:
+            print(f"Failed to upload NFT {i} '{data['name']}' for reason '{e}'.")
 
     # Close
     uploader.close()
