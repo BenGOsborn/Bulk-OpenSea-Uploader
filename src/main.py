@@ -14,11 +14,11 @@ def main():
     uploader.connect_metamask(seed_phrase, password)
 
     # Connect to the specified network - ENTER THE APPROPRIATE NETWORK
-    # uploader.add_network("", 0, 1) # Default network provided by Metamask
     NETWORK_RPC = "https://rpc-mumbai.maticvigil.com/"
     CHAIN_ID = 80001
-    uploader.add_network(NETWORK_RPC, CHAIN_ID) # Custom network to add to Metamask
+    uploader.set_network(NETWORK_RPC, CHAIN_ID) # Custom network to add to Metamask
     uploader.open_metamask()
+    # uploader.set_network("", 0, 1) # Use a default network provided by Metamask
 
     # Connect to OpenSea
     uploader.connect_opensea(test=True)
