@@ -16,3 +16,4 @@ A simple script which bulk uploads your NFT's to OpenSea without having to deplo
 ### Instructions
 
 1. Make a new `.env` file in `src` and inside of it specify your seed phrase `SEED_PHRASE=` and password `PASSWORD=`
+2. Copy your NFT assets you wish to upload to `data/images`, then inside of `data/metadata.json`, specify the metadata of each asset you wish to upload as an NFT to OpenSea. By default, the script only accepts `name` and `image` attributes, where the `name` is the name of the NFT, and the `image` is the name of the asset stored in the 
