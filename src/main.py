@@ -165,9 +165,9 @@ def main():
     # Upload to OpenSea
     uploader.connect_opensea(True)
     uploader.set_collection_url("https://testnets.opensea.io/collection/big-test-4")
+    
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test1")
     uploader.sign_transaction() # Only needed for the first upload
-
     uploader.upload(os.path.join(os.getcwd(), "data", "0.svg"), "Test2")
 
     # Close
