@@ -26,7 +26,7 @@ def main():
     uploader.set_collection_url(COLLECTION_URL)
 
     # Upload NFT data in 'metadata.json' to OpenSea - MODIFY THE UPLOAD FUNCTION AND THE METADATA TO CONTAIN ANY ADDITIONAL METADATA
-    metadata = json.load(open(os.path.join(os.getcwd(), "data", "manifest.json")))
+    metadata = json.load(open(os.path.join(os.getcwd(), "data", "metadata.json")))
     first_upload = True
     for i, data in enumerate(metadata):
         try:
