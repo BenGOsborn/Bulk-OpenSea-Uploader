@@ -20,3 +20,5 @@ A simple script which bulk uploads your NFT's to OpenSea without having to deplo
 3. Set your desired network in `main.py`. If you wish to use a default network specified by Metamask, uncomment the `uploader.set_network("", 0, 1) # Use a default network provided by Metamask` line, and replace the third argument with the position of where the default network appears in the Metamask networks list.
 4. Inside of `src` run `pipenv install`
 5. Download the latest [Chromedriver](https://chromedriver.chromium.org/downloads) and place the binary in `src/bin`. **NOTE** that if you are on Windows you will have to change the Chromedriver executable name in `uploader.py` from `chromedriver` to `chromedriver.exe`
+6. Package up your Metamask extension, then copy the resulting `.crx` file, rename it to `metamask.crx`, and place it in `src/bin`
+7. Within `src`, run `pipenv run python main.py`
