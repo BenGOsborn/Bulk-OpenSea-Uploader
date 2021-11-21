@@ -30,7 +30,7 @@ def main():
     first_upload = True
     for i, data in enumerate(metadata):
         try:
-            uploader.upload(os.path.join(os.getcwd(), "data", "images", data["image"]), data["name"])
+            uploader.upload(os.path.join(os.getcwd(), "data", "assets", data["asset"]), data["name"])
             if first_upload:
                 uploader.sign_transaction()
                 first_upload = False 

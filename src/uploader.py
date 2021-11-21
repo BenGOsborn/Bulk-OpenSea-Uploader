@@ -123,7 +123,7 @@ class Uploader:
 
         self.__collection_url = collection_url
 
-    def upload(self, img_path: str, name: str):
+    def upload(self, asset_path: str, name: str):
         '''
         Upload a single NFT to OpenSea.
         '''
@@ -133,7 +133,7 @@ class Uploader:
         sleep(1)
 
         # Input the data
-        self.__driver.find_element_by_xpath('//*[@id="media"]').send_keys(img_path) # **** Might need some pause for this to upload the image - do it before clicking
+        self.__driver.find_element_by_xpath('//*[@id="media"]').send_keys(asset_path)
         self.__driver.find_element_by_xpath('//*[@id="name"]').send_keys(name)
 
         # =================================
