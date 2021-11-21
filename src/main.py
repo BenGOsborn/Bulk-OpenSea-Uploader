@@ -88,6 +88,7 @@ class Uploader:
         '''
         Execute an operation within Metamask and then switch back
         '''
+
         self.__driver.switch_to.window(self.__driver.window_handles[1])
         self.__driver.refresh()
         sleep(2)
@@ -96,6 +97,10 @@ class Uploader:
         self.__driver.switch_to.window(self.__driver.window_handles[0])
 
     def connect_opensea(self, test: bool):
+        '''
+        Connect OpenSea with Metamask
+        '''
+
         self.__driver.get("https://testnets.opensea.io/login" if test else "https://opensea.io/login")
         sleep(2)
         self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/div/div[2]/ul/li[1]/button').click()
@@ -116,6 +121,7 @@ class Uploader:
         '''
         Sets the OpenSea collection URL to upload to
         '''
+
         self.__collection_url = collection_url
 
     def upload(self, img_path: str, name: str):
@@ -131,7 +137,9 @@ class Uploader:
         self.__driver.find_element_by_xpath('//*[@id="media"]').send_keys(img_path) # **** Might need some pause for this to upload the image - do it before clicking
         self.__driver.find_element_by_xpath('//*[@id="name"]').send_keys(name)
 
-        # ======== Add your other NFT metadata below
+        # =================================
+        # Add your other NFT metadata here
+        # =================================
 
         self.__driver.find_element_by_xpath('//*[@id="__next"]/div[1]/main/div/div/section/div[2]/form/div[9]/div[1]/span/button').click()
         sleep(2)
